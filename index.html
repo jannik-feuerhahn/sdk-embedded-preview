@@ -192,7 +192,7 @@
           </div>
 
           <h2>Preview</h2>
-          <button id="submitModal" class="launch">Open Preview Page</button>
+          <button id="submitPreview" class="launch">Open Preview Page</button>
           <!-- <button id="submitInline" class="launch">Inline iframe</button> -->
         </div>
       </form>
@@ -246,10 +246,10 @@
       });
 
       document
-        .getElementById("submitModal")
+        .getElementById("submitPreview")
         .addEventListener("click", function (e) {
           e.preventDefault();
-          handleFormSubmit("./modal.html");
+          handleFormSubmit("./preview.html");
         });
 
       function handleFormSubmit(action) {
