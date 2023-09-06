@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Care Journeys Testing Environment</title>
+    <link rel="stylesheet" href="css/styles.css?cbv=2" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=PT+Serif|Noto+Sans:normal,bold"
+    />
+  </head>
+  <body class="main">
+    <header>
+      <div class="column">
+        <img class="logo" src="img/powered-by-ada-logo.svg" alt="Logo" />
+        <h1>Care Journeys Testing Environment</h1>
+      </div>
+    </header>
+    <section>
+      <form method="GET">
+        <div class="column">
+          <h2>Settings</h2>
+          <div class="group">
+            <label for="txtBaseURL">Care Journeys URL</label>
+            <div class="control">
+              <input
+                type="text"
+                name="baseUrl"
+                id="txtBaseURL"
+                class="with-clear"
+                value="https://care-journeys.enterprise.ada.com/"
+              />
+              <i class="clear"></i>
+            </div>
+            <ul class="presets">
+              <li>
+                <a href="#" id="link-production-url">Production URL</a>
+              </li>
+              <li>
+                <a href="#" id="link-integration-url">Integration URL</a>
+              </li>
+              <li>
+                <a href="#" id="link-staging-url">Staging URL</a>
+              </li>
+              <li>
+                <a href="#" id="link-test-url">Test URL</a>
+              </li>
+            </ul>
+
+            <label for="txtJourneyTypeId">Journey Type Id</label>
+            <div class="control">
+              <input
+                type="text"
+                name="journeyTypeId"
+                id="txtJourneyTypeId"
+                class="with-clear"
+                value="tnbm50o1l8"
+              />
+              <i class="clear"></i>
+            </div>
+            <ul class="presets">
+              <li>
+                <a href="#" id="us-journey-type-id">US journey type id</a>
+              </li>
+              <li>
+                <a href="#" id="de-journey-type-id">DE journey type id</a>
+              </li>
+            </ul>
+
+            <label>Locale</label>
+            <br />
+            <div class="select">
+              <select name="locale">
+                <option value="en-US">English (US)</option>
+                <option value="de-DE">German</option>
+                <option value="es-419">Spanish</option>
+              </select>
+              <i class="globe"></i>
+            </div>
+            <br />
+
+            <a class="expander collapsed" id="advanced-expander-link" href="#"
+              >Show advanced fields</a
+            >
+            <div id="advanced-section" class="hidden">
+              <label>Custom Parameters</label>
+              <div id="custom-parameter-inputs">
+                <template>
+                  <div class="custom-parameter">
+                    <div>
+                      <label for="txtCustomParameterKey">Key:</label>
+                      <input
+                        type="text"
+                        name="customParameterKey"
+                        id="txtCustomParameterKey"
+                        class="with-clear"
+                      />
+                      <i class="clear"></i>
+                    </div>
+                    <div>
+                      <label for="txtCustomParameterValue">Value:</label>
+                      <input
+                        type="text"
+                        name="customParameterValue"
+                        id="txtCustomParameterValue"
+                        class="with-clear"
+                      />
+                      <i class="clear"></i>
+                    </div>
+                  </div>
+                </template>
+              </div>
+
+              <a
+                class="expander collapsed"
+                id="add-custom-parameter-link"
+                href="#"
+                >Add custom parameter</a
+              >
+              <br />
+
+              <label for="txtTrackingId">Tracking id</label>
+              <div class="control">
+                <input
+                  type="text"
+                  name="trackingId"
+                  id="txtTrackingId"
+                  class="with-clear"
+                />
+                <i class="clear"></i>
+              </div>
+
+              <div class="checkbox-group">
+                <label for="chkAutoInit">Auto Initialize</label>
+                <input
+                  type="checkbox"
+                  name="autoInit"
+                  id="chkAutoInit"
+                  checked
+                />
+              </div>
+
+              <div class="checkbox-group">
+                <label for="chkSkipExitConfirmation"
+                  >Skip Exit Confirmation</label
+                >
+                <input
+                  type="checkbox"
+                  name="skipExitConfirmation"
+                  id="chkSkipExitConfirmation"
+                />
+              </div>
+
+              <div class="checkbox-group">
+                <label for="chkBackDropInteraction"
+                  >Back Drop Interaction</label
+                >
+                <input
+                  type="checkbox"
+                  name="backDropInteraction"
+                  id="chkBackDropInteraction"
+                />
+              </div>
+
+              <div class="checkbox-group">
+                <label for="chkHideTitle">Hide Title</label>
+                <input type="checkbox" name="hideTitle" id="chkHideTitle" checked />
+              </div>
+
+              <div class="checkbox-group">
+                <label for="chkAnimation">Animation</label>
+                <input type="checkbox" name="animation" id="chkAnimation" />
+              </div>
+
+              <label for="selDialogLocation">Dialog Location</label>
+              <br />
+              <div class="select">
+                <select name="dialogLocation" id="selDialogLocation">
+                  <option value="center">Center</option>
+                  <option value="top-right">Top-Right</option>
+                  <option value="top-left">Top-Left</option>
+                  <option value="bottom-right">Bottom-Right</option>
+                  <option value="bottom-left">Bottom-Left</option>
+                </select>
+                <i class="position"></i>
+              </div>
+            </div>
+          </div>
+
+          <h2>Preview</h2>
+          <button id="submitModal" class="launch">Open Preview Page</button>
+          <!-- <button id="submitInline" class="launch">Inline iframe</button> -->
+        </div>
+      </form>
+    </section>
+    <footer>
+      <div class="container">
+        <p class="copyright">
+          &copy; Ada Health GmbH 2023
+          <a href="https://ada.com">ada.com</a>
+        </p>
+      </div>
+    </footer>
+    <script>
+      const form = document.querySelector("form");
+
+      const addCustomParameterLink = document.getElementById(
+        "add-custom-parameter-link"
+      );
+
+      const addCustomParameterField = () => {
+        let customParameterTemplate =
+          document.getElementsByTagName("template")[0];
+        let clone = customParameterTemplate.content.cloneNode(true);
+        document.getElementById("custom-parameter-inputs").appendChild(clone);
+      };
+
+      addCustomParameterLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        addCustomParameterField();
+      });
+
+      // Add first custom parameter input
+      addCustomParameterField();
+
+      const advancedExpanderLink = document.getElementById(
+        "advanced-expander-link"
+      );
+      const advancedSection = document.getElementById("advanced-section");
+
+      advancedExpanderLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (advancedSection.classList.contains("hidden")) {
+          advancedExpanderLink.innerText = "Hide advanced fields";
+          advancedExpanderLink.classList.replace("collapsed", "expanded");
+        } else {
+          advancedExpanderLink.innerText = "Show advanced fields";
+          advancedExpanderLink.classList.replace("expanded", "collapsed");
+        }
+
+        advancedSection.classList.toggle("hidden");
+      });
+
+      document
+        .getElementById("submitModal")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          handleFormSubmit("./modal.html");
+        });
+
+      function handleFormSubmit(action) {
+        const form = document.querySelector("form");
+
+        // handle boolean fields
+
+        const autoInit = document.getElementById("chkAutoInit");
+        autoInit.value = autoInit.checked ? "true" : "false";
+
+        const skipExitConfirmation = document.getElementById(
+          "chkSkipExitConfirmation"
+        );
+        skipExitConfirmation.value = skipExitConfirmation.checked
+          ? "true"
+          : "false";
+
+        const backDropInteraction = document.getElementById(
+          "chkBackDropInteraction"
+        );
+        backDropInteraction.value = backDropInteraction.checked
+          ? "true"
+          : "false";
+
+        const animation = document.getElementById("chkAnimation");
+        animation.value = animation.checked ? "true" : "false";
+
+        const hideTitle = document.getElementById("chkHideTitle");
+        hideTitle.value = hideTitle.checked ? "true" : "false";
+
+        form.action = action;
+        form.submit();
+      }
+
+      document
+        .getElementById("link-production-url")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          document.getElementById("txtBaseURL").value =
+            "https://care-journeys.enterprise.ada.com/";
+        });
+
+        document
+        .getElementById("link-integration-url")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          document.getElementById("txtBaseURL").value =
+            "https://care-journeys.int.enterprise.ada.com/";
+        });
+
+        document
+        .getElementById("link-staging-url")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          document.getElementById("txtBaseURL").value =
+            "https://care-journeys.stg.enterprise.ada.com/";
+        });
+
+        document
+        .getElementById("link-test-url")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          document.getElementById("txtBaseURL").value =
+            "https://care-journeys.test.enterprise.ada.com/";
+        });
+
+      document
+        .getElementById("us-journey-type-id")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          document.getElementById("txtJourneyTypeId").value = "tnbm50o1l8";
+        });
+
+      document
+        .getElementById("de-journey-type-id")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          document.getElementById("txtJourneyTypeId").value = "fk7uicoqs5";
+        });
+
+      function clearInputElement(event) {
+        try {
+          const inputElement = event.target.parentElement.firstElementChild;
+          inputElement.value = "";
+          inputElement.focus();
+        } catch (error) {}
+      }
+
+      document
+        .querySelectorAll("input.with-clear + i.clear")
+        .forEach(function (element) {
+          element.addEventListener("click", clearInputElement);
+        });
+    </script>
+  </body>
+</html>

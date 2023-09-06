@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Care Journeys Preview</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+
+  <body class="main">
+    <header>
+      <div class="column">
+        <img class="logo" src="img/powered-by-ada-logo.svg" alt="Logo" />
+        <h1>Care Journeys Preview</h1>
+      </div>
+    </header>
+    <section>
+      <div class="column">
+        <!-- <div class="group"> -->
+          <!-- <h2>Care Journey</h2> -->
+          <br />
+          <button class="launch" id="ada-care-journey-launcher">Launch Care Journey</button>
+          <br />
+          <a href="javascript:history.back()" class="back"
+            >&laquo; Back to configuration</a
+          >
+        <!-- </div> -->
+      </div>
+    </section>
+    <footer>
+      <div class="container">
+        <p class="copyright">
+          &copy; Ada Health GmbH 2023
+          <a href="https://ada.com">ada.com</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Ada Web SDK script. Make sure you include it after "window.adaConfig" is set. -->
+    <!-- (Including it at the very end of the document may also improve page load times.) -->
+    <script src="js/ada-config.js" mode="dialog"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@adahealth/web-sdk@2/dist/ada-web-sdk.js"></script>
+  </body>
+</html>
